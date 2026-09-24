@@ -15,7 +15,11 @@ st.title("📚 Anwar Ali's AI Document Q&A Chatbot")
 st.write("Document upload karein, khulasa (summary) dekhein, aur apni pasandeeda zubaan mein sawal poochein!")
 
 # Automatically fetch API key from .env file
-api_key = os.getenv("OPENROUTER_API_KEY")
+# Fetch API key from Streamlit Secrets or Fallback to .env for local
+try:
+    api_key = st.secrets["OPENROUTER_API_KEY"]
+except:
+    api_key = os.getenv("OPENROUTER_API_KEY")
 
 # Sidebar Configuration
 st.sidebar.header("Configuration")
